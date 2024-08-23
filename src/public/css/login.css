@@ -1,0 +1,100 @@
+.login__content {
+    width: 25%;
+    height: 20%;
+    margin: 100px auto;
+    padding: 0px;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-form__heading {
+    background-color: #0040ff;
+    display: inline-block;
+    padding: 15px;
+    border-radius: 3px 3px 0 0;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.login_theme {
+    color: #fff;
+    font-size: 12px;
+    margin: 0;
+}
+
+.form {
+    width: 100%;
+}
+
+.form__input--text {
+    display: flex;
+    align-items: center;
+    padding: 5px 5px 0px 5px;
+    margin: auto;
+    align-items: flex-end;
+
+    width: 80%;
+}
+
+.form__icon {
+    margin-right: 10px;
+    font-size: 15px;
+    align-items: flex-end;
+}
+
+.custom-input {
+    border: none;
+    border-bottom: 1px solid black;
+    background: none;
+    outline: none;
+    width: 100%;
+    font-size: 12px;
+}
+
+.form__group1 {
+    margin-top: 10px;
+}
+
+.form__group2 {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.form__button {
+    margin: 20px;
+    text-align: right;
+}
+
+.form__button-submit {
+    background-color: #0040ff;
+    color: #fff;
+    border: none;
+    padding: 3px 5px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    width: 20%;
+    transition: background-color 0.3s ease;
+}
+
+.form__button-submit:hover {
+    background-color: #0033cc;
+}
+
+@media screen and (max-width: 768px) {
+
+    .login__content {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+    }
+}

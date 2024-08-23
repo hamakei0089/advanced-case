@@ -1,0 +1,146 @@
+body {
+    background-color: #eeebeb;
+}
+
+.header__area {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    padding-left: 5px;
+    background-color: #0040fff9;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px gray;
+    /* 角を少し丸める */
+}
+
+.hamburger span {
+    display: block;
+    height: 1px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.line-1 {
+    width: 12px;
+}
+
+.line-2 {
+    width: 25px;
+}
+
+.line-3 {
+    width: 5px;
+}
+
+.menu-toggle:checked+.hamburger .line-1 {
+    transform: rotate(45deg);
+    width: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    margin-left: -12.5px;
+}
+
+.menu-toggle:checked+.hamburger .line-2 {
+    opacity: 0;
+}
+
+.menu-toggle:checked+.hamburger .line-3 {
+    transform: rotate(-45deg);
+    width: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    margin-left: -12.5px;
+}
+
+.slide-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    color: #000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.menu-toggle:checked~.slide-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(0);
+}
+
+.slide-menu table {
+    text-align: center;
+}
+
+.slide-menu__item {
+    margin-bottom: 20px;
+}
+
+.slide-menu__link {
+    text-decoration: none;
+    color: #0040fff9;
+    font-size: 35px;
+}
+.slide-menu__button {
+    text-decoration: none;
+    color: #0040fff9;
+    font-size: 37px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.header__logo {
+    color: #0040fff9;
+    text-decoration: none;
+    margin: 15px;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.header__logo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.header__logo a:visited {
+    color: inherit;
+}
+
+.header__logo a:hover {
+    color: inherit;
+}
+
+.header__logo a:active {
+    color: inherit;
+}
