@@ -36,7 +36,7 @@ MySQL8.0.26
 ![Alt text](table2.png)
 
 ## ER図
-![Alt text](index.drawio.png)
+![Alt text](ER図.png)
 
 
 # 環境構築
