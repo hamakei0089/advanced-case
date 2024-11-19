@@ -92,6 +92,10 @@
     background-color: #1d72b8;
 }
 
+.main__container {
+    display: flex;
+}
+
 @media screen and (max-width: 768px) {
 
     .store__container {

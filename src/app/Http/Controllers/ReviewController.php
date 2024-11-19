@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Store;
-use App\Models\Reserve;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -29,6 +27,7 @@ class ReviewController extends Controller
             'store_id' => $store->id,
             'user_id' => Auth::id(),
             'rating' => $request->rating,
+            'comment' => $request->comment,
         ]);
 
         return view('review_done');

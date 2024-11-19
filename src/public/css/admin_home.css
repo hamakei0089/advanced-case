@@ -1,0 +1,101 @@
+.admin__container{
+
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+
+.registration__container,
+.broadcast__container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width:100%;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.create_btn,
+.send_btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create_btn:hover {
+    background-color: #0056b3;
+}
+
+.success {
+    color: #28a745;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .admin__container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .registration__container{
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .broadcast__container {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+
+.theme {
+    font-size: 19px;
+}
+}

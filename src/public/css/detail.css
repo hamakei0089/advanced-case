@@ -1,178 +1,122 @@
-.detail_container {
+.detail__container {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     padding: 20px;
     box-sizing: border-box;
 }
 
 .store__container {
-    flex: 1;
-    margin-right: 30px;
+    flex: 2;
+    margin: 0;
+    padding: 0;
 }
 
-.store__row {
-    width: 70%;
-    margin-left: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.store__container img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    margin: 10px 0;
 }
 
 .button_and_name {
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: left;
+    gap: 10px;
 }
 
 .back_button {
-    margin-right: 10px;
-}
-
-.store__row img {
-    width: 100%;
-    height: auto;
-    margin: 20px 100px 20px 100px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .store-name__cell {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bold;
-    margin: 10px;
-    text-align: left;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .store-nature__cell {
-    font-size: 15px;
-    margin: 10px 50px;
-    text-align: left;
-    width: 100%;
-    box-sizing: border-box;
+    font-size: 14px;
+    margin: 10px 0;
+    color: #666;
 }
 
-.reserve_container {
-    width: 35%;
+.reservation__container {
+    flex: 1;
     background-color: #0059ffeb;
     padding: 20px;
-    margin-right:70px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);;
-    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
 }
 
-.reserve__row {
-    width: 50%;
-    margin-left: 10%;
+.theme {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.reservationForm {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    gap: 10px;
 }
 
-.theme{
-    font-size: 16px;
-    color: #ffffff;
+.reservation__date,
+.reservation__time,
+.reservation__number__of__people {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
 }
 
-.reserve_date{
+.reservation__confirm__container {
+    margin-top: 10px;
+}
+
+.reservation__confirm {
+    width: 100%;
+    padding: 10px;
+    background-color: #0045cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reservation__table {
+    width: 100%;
+    background-color: #007aff;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.reservation__cell1 {
     width: 30%;
-
-}
-.reserve_time ,
-.reserve_number_of_people {
-    width: 90%;
-}
-
-.reserve_confirm_container {
-    margin-top: 10px;
-}
-
-.reserve_confirm {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 60px;
-    flex: 1;
-    background-color: #0004ff;
-    width: 100%;
-    color: white;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-
-
-.reserve_table {
-    width: 85%;
-    background-color: #0095ff;
-    margin-right: 40px;
-    color: #ffff;
-    font-size: 12px;
-}
-
-.reserve_cell1 {
-    width: 20%;
     padding: 5px;
 }
 
-.reserve_cell2 {
+.reservation__cell2 {
     padding: 5px;
 }
 
-.reserve_confirm button {
-    flex: 1;
-    background-color: #0004ff;
-    width: 100%;
-    color: white;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin-top: 10px;
-    cursor: pointer;
-}
 @media screen and (max-width: 768px) {
-
-.detail_container {
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
-    overflow-x: hidden;
+    .detail__container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
-.store__container {
-    margin-right: 0;
-    width: 100%;
-    }
-
-.reserve_container {
+    .store__container {
         width: 100%;
-        margin: 20px 20px 500px 20px;
     }
 
-.reserve_cell1 {
-    width: 30%;
-    padding: 5px;
-}
+    .reservation__container {
+        width: 100%;
+    }
 
-.reserve_confirm {
-    width: 100%;
-    height: 50px;
-    margin-top: 20px;
-    margin-bottom: 5000px;
-    position: absolute;
-        top: 280px;
-        bottom: 0px;
-        left: 0px;
-        right: 0px;
+    .reservation__confirm {
+        margin-top: 20px;
     }
 }

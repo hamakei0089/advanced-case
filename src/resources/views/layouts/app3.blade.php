@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common2.css') }}">
@@ -44,28 +45,28 @@
                 @endif
             </table>
         </div>
-    <div class="search-bar">
-        <div class="search-item">
-            <select id="area-filter" class="filter">
-                <option value="all">All area</option>
-                @foreach($areas as $area)
-                <option value="{{ $area->place }}">{{ $area->place }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="search-item">
-            <select id="genre-filter" class="filter">
-                <option value="all">All genre</option>
-                @foreach($genres as $genre)
-                <option value="{{ $genre->genre }}">{{ $genre->genre }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="search-item">
-            <input type="text" id="search-box" class="search-box" placeholder="🔍Search...">
-        </div>
-    </div>
 
+        <div class="search-bar">
+            <div class="search-item">
+                <select id="area-filter" class="filter">
+                    <option value="all">All area</option>
+                    @foreach($areas as $area)
+                    <option value="{{ $area->name }}">{{ $area->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="search-item">
+                <select id="genre-filter" class="filter">
+                    <option value="all">All genre</option>
+                    @foreach($genres as $genre)
+                    <option value="{{ $genre->name }}">{{ $genre->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="search-item">
+                <input type="text" id="search-box" class="search-box" placeholder="🔍Search...">
+            </div>
+        </div>
     </header>
 
     <main>
@@ -73,30 +74,9 @@
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script>
 
-            $('#search-box, #area-filter, #genre-filter').on('input change', function () {
-                var searchValue = $('#search-box').val().toLowerCase();
-                var areaFilter = $('#area-filter').val();
-                var genreFilter = $('#genre-filter').val();
+    <script src="{{ asset('js/search.js') }}"></script>
 
-                $('.store__row').each(function () {
-                    var place = $(this).data('place').toLowerCase();
-                    var genre = $(this).data('genre').toLowerCase();
-                    var storeName = $(this).find('.store__cell:first').text().toLowerCase();
-
-                    var matchesSearch = storeName.includes(searchValue);
-                    var matchesArea = areaFilter === 'all' || place === areaFilter.toLowerCase();
-                    var matchesGenre = genreFilter === 'all' || genre === genreFilter.toLowerCase();
-
-                    if (matchesSearch && matchesArea && matchesGenre) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            });
-    </script>
 </body>
 
 </html>

@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<div class="reserve_container">
-    <p class="reserve_theme">ご予約ありがとうございます</p>
+<div class="reservation__container">
+    <p class="reservation__theme">ご予約ありがとうございます</p>
         @csrf
         <div class="form__button">
             <a href="/" class="form__button-submit">戻る</a>

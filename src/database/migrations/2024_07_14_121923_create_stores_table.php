@@ -18,9 +18,12 @@ class CreateStoresTable extends Migration
             $table->string('store_name')->nullable();
             $table->text('detail')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->string('place')->nullable();
-            $table->string('genre')->nullable();
+            $table->unsignedBigInteger('area_id');
+            $table->unsignedBigInteger('genre_id');
             $table->timestamps();
+
+        $table->foreign('area_id')->references('id')->on('areas');
+        $table->foreign('genre_id')->references('id')->on('genres');
         });
     }
 

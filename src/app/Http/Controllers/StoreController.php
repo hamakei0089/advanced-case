@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Models\Favorite;
-use Illuminate\Support\Facades\Auth;
-
 
 class StoreController extends Controller
 {

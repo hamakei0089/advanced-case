@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -47,8 +48,8 @@ public function favorites()
         return $this->hasMany(Favorite::class);
     }
 
-    public function reserves()
+    public function reservations()
     {
-        return $this->hasMany(Reserve::class);
+        return $this->hasMany(Reservation::class);
     }
 }

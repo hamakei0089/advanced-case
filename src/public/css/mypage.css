@@ -1,20 +1,22 @@
 .username {
     display: flex;
     justify-content: center;
+    margin-top: -30px;
 }
 
-.personal_container {
+.personal__container {
     display: flex;
     justify-content: space-between;
     gap: 10px;
 }
 
-.reserve_container {
+.reservation__container {
     width: 45%;
     height: 100%;
+    text-align: left;
 }
 
-.reserve_row {
+.reservation__row {
     width: 70%;
     margin-left: 30px;
     margin-bottom: 30px;
@@ -26,30 +28,50 @@
     color: #ffffff;
 }
 
-.reserve_theme {
+.reservation__theme {
     font-size: 30px;
     margin-left: 50px;
 }
 
-.reserve table {
+.reservation__table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.reserve_symbol {
+.reservation__symbol {
     font-size: 30px;
 }
 
-.reserve_topic {
+.reservation__topic {
     font-size: 14px;
     text-align: left;
 }
 
-.reserve_cell {
+.reservation__cell {
     font-size: 14px;
-    height: 50px;
-    width: 120px;
-    margin: 30px;
+    height: 40px;
+    margin: 35px;
+    padding-left: 20px;
+}
+
+.payment_btn {
+    display: inline-block;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit_reservation_btn,
+.evaluation_btn {
+    cursor: pointer;
 }
 
 .btn-danger {
@@ -67,13 +89,16 @@
 .favorite__container {
     width: 55%;
     height: 100%;
+    text-align: right;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-.favorite_theme {
+.favorite__theme {
+    width: 95%;
     font-size: 30px;
+    text-align: left;
     margin-left: 30px;
     margin-right: 300px;
 }
@@ -104,7 +129,7 @@
     padding: 10px 15px;
 }
 
-.favorite_row__content {
+.favorite__row__content {
     width: 100%;
 }
 
@@ -154,7 +179,8 @@
 }
 
 .favorite-btn.bg-blue-500 {
-    background-color: #3490dc;
+    background-color: #ffffff;
+    ;
 }
 
 .favorite-btn.bg-blue-700:hover {
@@ -162,33 +188,30 @@
 }
 
 @media screen and (max-width: 768px) {
-    .personal_container {
+    .personal__container {
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 20px;
     }
 
-    .reserve_container{
-        width: 95%;
-        justify-content: center;
-    }
-
+    .reservation__container,
     .favorite__container {
         width: 95%;
         justify-content: center;
-        margin-bottom: 500px;
-        }
+        margin-bottom: 30px;
+    }
 
-    .reserve_row,
+    .reservation__row,
     .favorite__row {
         width: 100%;
         margin: 10px 0;
         box-sizing: border-box;
     }
 
-    .reserve_theme,
-    .favorite_theme {
+    .reservation__theme,
+    .favorite__theme {
         display: flex;
         justify-content: left;
         font-size: 18px;
@@ -196,8 +219,7 @@
         width: 100%;
     }
 
-
-    .reserve_cell {
+    .reservation__cell {
         font-size: 12px;
         height: 50px;
         width: 120px;

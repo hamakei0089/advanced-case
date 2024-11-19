@@ -1,4 +1,4 @@
-.review_container {
+.review__container {
     width: 400px;
     height: 250px;
     margin: 0 auto;
@@ -9,7 +9,7 @@
     text-align: center;
 }
 
-.review_theme {
+.review__theme {
     font-size: 20px;
     color: #333;
     margin-top: 70px;

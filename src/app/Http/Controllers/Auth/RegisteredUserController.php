@@ -25,6 +25,8 @@ class RegisteredUserController extends Controller
     {
         $user = $creator->create($request->validated());
 
+        $user->sendEmailVerificationNotification();
+
         /*event(new Registered($user));*/
 
         return redirect()->route('thanks');

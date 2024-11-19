@@ -36,7 +36,6 @@
     padding: 5px 5px 0px 5px;
     margin: auto;
     align-items: flex-end;
-
     width: 80%;
 }
 
@@ -84,6 +83,39 @@
 
 .form__button-submit:hover {
     background-color: #0033cc;
+}
+
+.admin_login_btn,
+.rep_login_btn,
+.back_btn {
+    display: inline-block;
+    width: 200px;
+    padding: 10px 20px;
+    background-color: #0040ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+}
+
+.admin_login_btn:hover,
+.rep_login_btn:hover ,
+.back_btn:hover{
+    background-color: #002299;
+}
+
+.button__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.admin_login_btn:hover {
+    background-color: #0056b3;
 }
 
 @media screen and (max-width: 768px) {

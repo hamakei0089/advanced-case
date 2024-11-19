@@ -12,10 +12,24 @@ class Store extends Model
         'store_name',
         'detail',
         'thumbnail',
+        'area_id',
+        'genre_id',
+        'rep_id'
     ];
-    public function reserves()
+
+    public function area()
     {
-        return $this->hasMany(Reserve::class);
+        return $this->belongsTo(Area::class,'area_id');
+    }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class,'genre_id');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
     }
 
     public function favorites()
@@ -25,7 +39,7 @@ class Store extends Model
 
     public function favoritedBy()
     {
-        return $this->belongsToMany(User::class, 'favorites');
+        return $this->belongsToMany(User::class, 'favorites', 'store_id', 'user_id');
     }
     public function reviews()
     {

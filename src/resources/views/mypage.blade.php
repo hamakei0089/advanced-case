@@ -10,27 +10,26 @@
 @endphp
 
 <h2 class="username">{{ $user->name }}さん</h2>
-<div class="personal_container">
     @if (session('message'))
-        <div class="alert alert-success">
+        <p class="alert alert-success">
             {{ session('message') }}
-        </div>
+        </p>
     @endif
-
-    <div class="reserve_container">
-         <h3 class="reserve_theme">予約状況</h3>
-        @if($reserves->isEmpty())
+<div class="personal__container">
+    <div class="reservation__container">
+        <h3 class="reservation__theme">予約状況</h3>
+        @if($reservations->isEmpty())
             <p>予約した情報はありません。</p>
         @else
-            @foreach($reserves as $index => $reserve)
-        <div class="reserve_row">
-            <table class="reserve_table">
+            @foreach($reservations as $index => $reservation)
+        <div class="reservation__row">
+            <table class="reservation__table">
                 <tr>
-                    <td class="reserve_symbol">🕑</td>
-                    <td class="reserve_topic">予約{{ $index + 1 }}</td>
-                    <td class="reserve_cell"></td>
-                    <td colspan="2" class="reserve_cell">
-                        <form action="{{ route('reservations.destroy', $reserve->id) }}" method="post" onsubmit="return confirm('本当に削除しますか？');">
+                    <td class="reservation__symbol">🕑</td>
+                    <td class="reservation__topic">予約{{ $index + 1 }}</td>
+                    <td class="reservation__cell"></td>
+                    <td colspan="2" class="reservation__cell">
+                        <form action="{{ route('reservations.destroy', $reservation->id) }}" method="post" onsubmit="return confirm('本当に削除しますか？');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">×</button>
@@ -38,33 +37,43 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="reserve_cell">Shop</td>
-                    <td class="reserve_cell">{{ $reserve->store->store_name }}</td>
+                    <td class="reservation__cell">Shop</td>
+                    <td class="reservation__cell">{{ $reservation->store->store_name }}</td>
                 </tr>
                 <tr>
-                    <td class="reserve_cell">Date</td>
-                    <td class="reserve_cell">{{ Carbon::parse($reserve->datetime)->format('Y-m-d') }}</td>
+                    <td class="reservation__cell">Date</td>
+                    <td class="reservation__cell">{{ Carbon::parse($reservation->date)->format('Y-m-d') }}</td>
                 </tr>
                 <tr>
-                    <td class="reserve_cell">Time</td>
-                    <td class="reserve_cell">{{ Carbon::parse($reserve->datetime)->format('H:i') }}</td>
+                    <td class="reservation__cell">Time</td>
+                    <td class="reservation__cell">{{ Carbon::parse($reservation->time)->format('H:i') }}</td>
                 </tr>
                 <tr>
-                    <td class="reserve_cell">Number</td>
-                    <td class="reserve_cell">{{ $reserve->number_of_people }}人</td>
+                    <td class="reservation__cell">Number</td>
+                    <td class="reservation__cell">{{ $reservation->number_of_people }}人</td>
                 </tr>
                 <tr>
-                    <td class="reserve_cell">
-                        <form action="{{ route('reserve.edit', ['id' => $reserve->id]) }}" method="get">
+                    <td class="reservation__cell">
+                        <form action="{{ route('reservation.edit', ['id' => $reservation->id]) }}" method="get">
                             @csrf
-                            <button class="edit_reserve_btn" type="submit">編集</button>
+                            <button class="edit_reservation_btn" type="submit">編集</button>
                         </form>
                     </td>
-                    <td class="reserve_cell">
-                        @if (Carbon::parse($reserve->datetime)->isPast())
-                            <form action="{{ route('reviews.create', ['store' => $reserve->store->id]) }}" method="get">
+                    <td class="reservation__cell">
+                        <form action="{{ route('qr-code.show' , ['id' => $reservation->id]) }}" method="get">
+                            @csrf
+                            <button class="edit_reservation_btn" type="submit">QRコード</br>生成</button>
+                        </form>
+                    </td>
+                    <td class="reservation__cell">
+                        <a class="payment_btn" href="https://buy.stripe.com/test_dR6aF5gSxg6yfK0bII">支払い
+                        </a>
+                    </td>
+                    <td class="reservation__cell">
+                        @if (Carbon::parse($reservation->formatted_datetime)->isPast())
+                            <form action="{{ route('reviews.create', ['store' => $reservation->store->id]) }}" method="get">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">評価する</button>
+                                <button type="submit" class="evaluation_btn">評価する</button>
                             </form>
                         @endif
                         </td>
@@ -76,18 +85,16 @@
     </div>
 
     <div class="favorite__container">
-    <h3 class="favorite_theme">お気に入り店舗</h3>
+    <h3 class="favorite__theme">お気に入り店舗</h3>
     @if($favorites->isEmpty())
         <p>お気に入りの店舗はありません。</p>
     @else
         @foreach($favorites as $favorite)
             <div class="favorite__row" data-store-id="{{ $favorite->store->id }}">
-                <div class="favorite_row__image">
-                    <img src="{{ asset('storage/' . $favorite->store->thumbnail) }}" alt="{{ $favorite->store->store_name }}" />
-                </div>
+                <img src="{{ asset('storage/' . $favorite->store->thumbnail) }}" alt="{{ $favorite->store->store_name }}" />
                 <div class="favorite_row__content">
                     <p class="favorite-store-name__cell">{{ $favorite->store->store_name }}</p>
-                    <p class="favorite-store-nature__cell">#{{ $favorite->store->place }} #{{ $favorite->store->genre }}</p>
+                    <p class="favorite-store-nature__cell">#{{ $favorite->store->area->name }} #{{ $favorite->store->genre->name }}</p>
                     <div class="favorite__actions">
                         <form class="store_form" action="{{ route('store.detail', ['store_id' => $favorite->store->id]) }}" method="get">
                             <button>詳しくみる</button>
@@ -105,35 +112,7 @@
         @endif
     </div>
 </div>
-@endsection
 
-@section('scripts')
-<script src="{{ asset('js/script.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('.favorite-btn').click(function() {
-            var button = $(this);
-            var storeId = button.closest('.favorite__row').data('store-id');
-            var isFavorite = button.data('favorite');
-
-            $.ajax({
-                url: '/stores/' + storeId + '/favorite',
-                method: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function(response) {
-
-                    isFavorite = !isFavorite;
-                    button.data('favorite', isFavorite);
-                    button.html(isFavorite ? '♡' : '❤️');
-                    button.toggleClass('bg-red-500 hover:bg-red-700 bg-blue-500 hover:bg-blue-700');
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
-                }
-            });
-        });
-    });
-</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ asset('js/mypage.js') }}"></script>
 @endsection

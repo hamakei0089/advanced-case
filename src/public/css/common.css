@@ -28,7 +28,6 @@ body {
     align-items: flex-start;
     border-radius: 5px;
     box-shadow: 2px 2px 4px gray;
-    /* 角を少し丸める */
 }
 
 .hamburger span {
