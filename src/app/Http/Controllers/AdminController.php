@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('userid', 'password');
+        $credentials = $request->only('administrator_id', 'password');
 
         if (Auth::guard('administrators')->attempt($credentials)) {
 
@@ -27,7 +27,7 @@ class AdminController extends Controller
         }
 
         return back()->withErrors([
-            'userid' => 'ログイン情報が正しくありません。',
+            'administrator_id' => 'ログイン情報が正しくありません。',
         ]);
     }
 
@@ -48,13 +48,13 @@ class AdminController extends Controller
 
     $validatedData = $request->validate([
         'name' => 'required|string|max:255',
-        'repid' => 'required|string|max:255|unique:representatives',
+        'representative_id' => 'required|string|max:255|unique:representatives',
         'password' => 'required|string|min:8',
     ]);
 
     Representative::create([
         'name' => $validatedData['name'],
-        'repid' => $validatedData['repid'],
+        'representative_id' => $validatedData['representative_id'],
         'password' => Hash::make($validatedData['password']),
     ]);
 

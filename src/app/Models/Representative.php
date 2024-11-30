@@ -15,7 +15,7 @@ class Representative extends Authenticatable implements MustVerifyEmailContract
 
     protected $fillable = [
         'name',
-        'repid',
+        'representative_id',
         'password',
     ];
 
@@ -25,7 +25,7 @@ class Representative extends Authenticatable implements MustVerifyEmailContract
     ];
 
     protected $casts = [
-        'repid_verified_at' => 'datetime',
+        'representative_id_verified_at' => 'datetime',
     ];
 
     public function administrator()

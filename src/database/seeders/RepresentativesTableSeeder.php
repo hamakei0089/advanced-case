@@ -16,14 +16,14 @@ class RepresentativesTableSeeder extends Seeder
     {
     $param = [
             'name' => '代表太郎',
-            'repid' => 'representative1',
+            'representative_id' => 'representative1',
             'password' => 'representative1',
         ];
         DB::table('representatives')->insert($param);
 
     $param = [
             'name' => '代表次郎',
-            'repid' => 'representative2',
+            'representative_id' => 'representative2',
             'password' => 'representative2',
         ];
         DB::table('representatives')->insert($param);

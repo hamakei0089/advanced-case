@@ -16,8 +16,8 @@
                 <input type="text" name="name" required>
             </div>
             <div class="form-group">
-                <label for="repid">代表者ID:</label>
-                <input type="text" name="repid" required>
+                <label for="representative_id">代表者ID:</label>
+                <input type="text" name="representative_id" required>
             </div>
             <div class="form-group">
                 <label for="password">パスワード:</label>

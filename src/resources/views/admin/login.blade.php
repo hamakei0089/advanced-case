@@ -14,10 +14,10 @@
         <div class="form__group1">
             <div class="form__input--text">
                 <span class="form__icon">👤</span>
-                <input type="userid" name="userid" value="{{ old('userid') }}" placeholder="User-id" class="custom-input"/>
+                <input type="administrator_id" name="administrator_id" value="{{ old('administrator_id') }}" placeholder="administrator_id" class="custom-input"/>
             </div>
             <div class="form__error">
-                @error('userid')
+                @error('administrator_id')
                 {{ $message }}
                 @enderror
             </div>

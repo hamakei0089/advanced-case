@@ -22,7 +22,7 @@ class RepController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('repid', 'password');
+        $credentials = $request->only('representative_id', 'password');
 
         if (Auth::guard('representatives')->attempt($credentials)) {
 
@@ -30,7 +30,7 @@ class RepController extends Controller
         }
 
         return back()->withErrors([
-            'repid' => 'ログイン情報が正しくありません。',
+            'representative_id' => 'ログイン情報が正しくありません。',
         ]);
     }
 

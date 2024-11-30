@@ -14,10 +14,10 @@
         <div class="form__group1">
             <div class="form__input--text">
                 <span class="form__icon">👤</span>
-                <input type="repid" name="repid" value="{{ old('repid') }}" placeholder="Representative-id" class="custom-input"/>
+                <input type="representative_id" name="representative_id" value="{{ old('representative_id') }}" placeholder="representative_id" class="custom-input"/>
             </div>
             <div class="form__error">
-                @error('repid')
+                @error('representative_id')
                 {{ $message }}
                 @enderror
             </div>
