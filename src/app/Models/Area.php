@@ -9,7 +9,7 @@ class Area extends Model
 {
     use HasFactory;
 
-    public function store()
+    public function stores()
     {
         return $this->hasMany(Store::class);
     }

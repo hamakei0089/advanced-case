@@ -32,4 +32,8 @@ class Representative extends Authenticatable implements MustVerifyEmailContract
     {
         return $this->belongsTo(Administrator::class, 'admin_id');
     }
+    public function stores()
+    {
+        return $this->hasMany(Store::class);
+    }
 }
