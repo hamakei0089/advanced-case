@@ -147,19 +147,19 @@ CASHIER_CURRENCY_LOCALE=ja_JP　　
 CASHIER_LOGGER=daily　　
 
 
-5. アプリケーションキーの作成　　
+6. アプリケーションキーの作成　　
 
 php artisan key:generate　　
 
-6. マイグレーションの実行　　
+7. マイグレーションの実行　　
 
 php artisan migrate　　
 
-7. シンボリックリンクの作成
+8. シンボリックリンクの作成
 
 php artisan storage:link
 
-8. コマンドの作成
+9. コマンドの作成
 
 php artisan make:command SendReminderEmails
 
@@ -190,7 +190,7 @@ protected function schedule(Schedule $schedule)
     }　　
 
 
-9. ダミーデータのシーディング　　
+10. ダミーデータのシーディング　　
 
 開発環境で使用するための店舗データをデータベースに投入　　
 
@@ -205,7 +205,7 @@ php artisan db:seed --class=AdministratorsTableSeeder　　
 php artisan db:seed --class=RepresentativesTableSeeder　　
 
 
-10. QRコード生成のため、simple-qrcodeをインストール　　
+11. QRコード生成のため、simple-qrcodeをインストール　　
 
 composer require simplesoftwareio/simple-qrcode　　
 
