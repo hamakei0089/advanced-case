@@ -68,12 +68,17 @@ MySQL8.0.26　　
 
 ## テーブル設計　　
 
-![Alt text](table1.png)　　
-![Alt text](table2.png)　　
+![テーブル1](docs/images/table1.png)　　
+
+![テーブル2](docs/images/table2.png)　　
+
+
 
 ## ER図　　
 
-![Alt text](ERD.png)　　
+![ER図](docs/images/ERD.png)　　
+
+
 
 
 # 環境構築　　
@@ -94,9 +99,11 @@ Laravel環境構築　　
 
 2. composer install　　
 
-3. 「.env.example」ファイルを「.env」ファイルに命名を変更　　
+3. composer require laravel/fortify
 
-4. .envに以下の環境変数を追加　　
+4. 「.env.example」ファイルを「.env」ファイルに命名を変更　　
+
+5. .envに以下の環境変数を追加　　
 
 
 DB_CONNECTION=mysql　　
@@ -105,11 +112,11 @@ DB_HOST=mysql　　
 
 DB_PORT=3306　　
 
-DB_DATABASE=laravel_db　　
+DB_DATABASE=your_database_name　　
 
-DB_USERNAME=laravel_user　　
+DB_USERNAME=your_database_user　　
 
-DB_PASSWORD=laravel_pass　　
+DB_PASSWORD=your_database_pass　　
 
 
 MAIL_MAILER=smtp　　
@@ -129,9 +136,9 @@ MAIL_FROM_ADDRESS=rese@example.com　　
 MAIL_FROM_NAME="Rese"　　
 
 
-STRIPE_KEY=pk_test_51QJW3HBCxu1DS7rRY7zPX8UWjMJXGLrpWpRAdSIrKYpKL3f2RepJfVStNc1TQ5HpIZD1O4nXKtEs4nWXWPe4ACn5003fcxoJOx　　
+STRIPE_KEY=your_publc_key　　
 
-STRIPE_SECRET=sk_test_51QJW3HBCxu1DS7rRs5sYonHdWhueIjPIMwa8SwBm95J6pYBX82QUwVrxhOCXTwkFPvkiXpcZi96mvTGsZ8UIAgVU00z52ex8ts　　
+STRIPE_SECRET=your_secret_key　　
 
 CASHIER_CURRENCY=JPY　　
 
@@ -148,7 +155,42 @@ php artisan key:generate　　
 
 php artisan migrate　　
 
-7. ダミーデータのシーディング　　
+7. シンボリックリンクの作成
+
+php artisan storage:link
+
+8. コマンドの作成
+
+php artisan make:command SendReminderEmails
+
+コマンド内に以下を記述
+
+public function handle()　　
+
+    {　　
+
+        $reservations = Reservation::whereDate('date', Carbon::today())->get();　　
+
+        foreach ($reservations as $reservation) {　　
+
+        Mail::to($reservation->user->email)->send(new ReservationReminder($reservation));　　
+
+        }　　
+
+    }　　
+
+
+app/Console/Kernel.php の schedule メソッドに以下のタスクを記述
+
+protected function schedule(Schedule $schedule)
+    {　　
+
+    $schedule->command('email:send-reminders')->dailyAt('9:00');　　
+
+    }　　
+
+
+9. ダミーデータのシーディング　　
 
 開発環境で使用するための店舗データをデータベースに投入　　
 
@@ -161,6 +203,26 @@ php artisan db:seed --class=StoresTableSeeder　　
 php artisan db:seed --class=AdministratorsTableSeeder　　
 
 php artisan db:seed --class=RepresentativesTableSeeder　　
+
+
+10. QRコード生成のため、simple-qrcodeをインストール　　
+
+composer require simplesoftwareio/simple-qrcode　　
+
+config/app.phpファイルのproviders配列とaliases配列に以下の記述を追加　　
+
+providers' => [　　
+
+    SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,　　
+
+],　　
+
+'aliases' => [　　
+
+    'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,　　
+
+],　　
+
 
 
 # advanced-case
