@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Models\Favorite;
+use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
+
+    public function index()
+    {
+    $user =  Auth::user();
+    $stores = Store::all();
+    $areas = Area::all();
+    $genres = Genre::all();
+
+    return view('index', compact('stores', 'areas', 'genres'));
+
+    }
 
 public function show($id)
     {

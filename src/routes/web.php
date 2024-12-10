@@ -38,7 +38,9 @@ Route::post('/email/resend', [EmailVerificationController::class, 'resend'])->mi
 
 /*user*/
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [AuthController::class, 'index']);
+    Route::get('/', [StoreController::class, 'index']);
+    Route::get('/detail/{store_id}', [StoreController::class, 'show'])->name('store.detail');
+    Route::post('/stores/{store}/favorite', [StoreController::class, 'like'])->name('store.favorite');
 
     Route::post('/done', [ReservationController::class, 'store']);
     Route::delete('/mypage/delete/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
@@ -48,8 +50,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/mypage', [PersonalController::class, 'index']);
 
-    Route::get('/detail/{store_id}', [StoreController::class, 'show'])->name('store.detail');
-    Route::post('/stores/{store}/favorite', [StoreController::class, 'like'])->name('store.favorite');
 
     Route::get('/stores/{store}/reviews', [ReviewController::class, 'index'])->name('reviews.create');
     Route::post('/stores/{store}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
@@ -80,7 +80,7 @@ Route::prefix('rep')->group(function () {
         Route::get('/detail/{store_id}', [RepController::class, 'show'])->name('rep.detail');
         Route::get('/edit/store/{store_id}', [RepController::class, 'edit'])->name('rep.edit.store');
         Route::put('/store/{store_id}', [RepController::class, 'update'])->name('rep.update.store');
-        Route::delete('/store/{store_id}', [RepController::class, 'delete'])->name('rep.delete.store');
+        Route::delete('/store/{store_id}', [RepController::class, 'destroy'])->name('rep.delete.store');
 
     });
 });

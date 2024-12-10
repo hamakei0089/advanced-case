@@ -115,7 +115,7 @@ class RepController extends Controller
     return redirect()->route('rep.home')->with('success', '店舗情報が更新されました');
 }
 
-    public function delete($store_id)
+    public function destroy($store_id)
     {
     $store = Store::findOrFail($store_id);
     $store->delete();
